@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" placeholder="Enter 1st number"id="first-number">  <input type="number" placeholder="Enter 2nd number" id="second-number"> <br> <br> <br> 
+    <!-- <h2 id="val">0</h2> -->
+    <button onclick=Add()>Add</button>
+    <button onclick=Sub()>Subtract</button>
+    <button onclick=mul()>Multiply</button>
+    <button onclick=Div()>Divide</button>
+</body>
+</html>
+<script>
+    let FN=document.getElementById("first-number")
+    let SN=document.getElementById("second-number")
+    //  let h2tag=document.getElementById("val")
+    function Add()
+    {
+       let output=parseInt(FN.value)+parseInt(SN.value)
+    //   h2tag.innerText=output
+    alert(output)
+    }
+    function Sub()
+    {
+        let output=parseInt(FN.value)-parseInt(SN.value)
+    //   h2tag.innerText=output
+    alert(output)
+    }
+    function mul()
+    {
+        let output=parseInt(FN.value)*parseInt(SN.value)
+    //   h2tag.innerText=output
+    alert(output)
+    }
+    function Div()
+    {
+        let output=parseInt(FN.value)/parseInt(SN.value)
+    //   h2tag.innerText=output
+    alert(output)
+    }
+</script>
