@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slideshow-container{
+           max-width:800px;
+           position:relative;
+            margin:0 auto;
+        }
+        .mySlides{
+         display:none;
+         /* overflow-y:hidden; */
+       
+        }
+        .left-arrow{
+            position:absolute;
+            top:50%;
+            left:5%;
+            z-index: 100;
+        }
+        .right-arrow{
+            position:absolute;
+            top:50%;
+            right:5%
+        }
+        .stopstart{
+            position:absolute;
+            top:100%;
+            left:0%;
+            padding:10px 20px;
+            border:none;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="slideshow-container">
+    <div class="mySlides">
+      <img src="img/img1.jpg" style="width:100%">
+    </div>
+  
+    <div class="mySlides">
+      <img src="img/img2.jpg" style="width:100%">
+    </div>
+    <div class="mySlides">
+      <img src="img/img3.jpg" style="width:100%">
+    </div>
+    <div class="mySlides">
+      <img src="img/img6.jpg" style="width:100%">
+    </div>
+    <div class="mySlides">
+      <img src="img/img5.jpg" style="width:100%">
+    </div>
+    <button class="left-arrow"><</button>
+    <button class="right-arrow">></button>
+    <button class="stopstart">start</button>
+    </div>
+</body>
+<script>
+     let slides=document.querySelectorAll('.mySlides');
+    let leftArrow=document.querySelector('.left-arrow');
+    let rightArrow=document.querySelector('.right-arrow');
+    let startstop=document.querySelector('.stopstart');
+    let slideindex=0
+    let slideshow;
+   startstop.addEventListener('click',()=>{
+    if(slideshow){
+        clearInterval(slideshow)
+        slideshow=null
+        startstop.innerText="start";
+    }else{
+        slideshow=setInterval(showImg,1000);
+        startstop.innerText="stop";
+    }
+
+   })
+   leftArrow.addEventListener('click',()=>{
+    clearInterval(slideshow)
+    slideshow=null
+    slideindex-=1
+    console.log(slideindex)
+    if (slideindex > slides.length) {
+      slideindex = 1;
+    } else if (slideindex < 1) {  
+      slideindex = slides.length;
+    
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slides[slideindex - 1].style.display = "block";
+ 
+   })
+   rightArrow.addEventListener('click',()=>{
+    clearInterval(slideshow)
+    slideshow=null
+    slideindex+=1
+ 
+    if (slideindex > slides.length) {
+      slideindex = 1;
+    } else if (slideindex < 1) {  
+      slideindex = slides.length;
+    
+    }
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+
+    slides[slideindex - 1].style.display = "block";
+ 
+   })
+  function showImg(){
+  let i
+   for(i=0;i<slides.length;i++){
+    slides[i].style.display="none";
+   }
+   slideindex++
+   if(slideindex>slides.length){
+    slideindex=1
+   }
+   slides[slideindex-1].style.display="block";
+
+  }
+  if(slideshow){
+        clearInterval(slideshow)
+        slideshow=null
+        startstop.innerText="start";
+    }else{
+        slideshow=setInterval(showImg,1000);
+        startstop.innerText="stop";
+    }
+
+</script>
+</html>
