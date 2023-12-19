@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width:100vw;
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .timerbox{
+            width:200px;
+            height:200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        .timerDisplay{
+            display: flex;
+            width:150px;
+            justify-content: center;
+        }
+        .msec{
+            width:10px;
+        }
+        .sec{
+            width:30px;
+        }
+        .min{
+            width:40px;
+        }
+        .startBtn{
+            padding:5px 20px;
+            border:none;
+            border-radius: 5px;
+        }
+        .restartBtn{
+            padding:5px 20px;
+            border:none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="timerbox">
+            <div class="timerDisplay">
+                <div class="min"></div>
+                <div class="sec">0<span>s:</span></div>
+                <div class="msec">00</div>
+            </div>
+           <div><button class="startBtn">Start</button>
+            <button class="restartBtn">Restart</button>
+        </div> 
+        </div>
+    </div>
+</body>
+<script>
+    let timerDisplay=document.querySelector('.timerDisplay');
+    let startstop=document.querySelector('.startBtn');
+    let restartBtn=document.querySelector('.restartBtn');
+    let ms=document.querySelector('.msec')
+    let sc=document.querySelector('.sec')
+    let mi=document.querySelector('.min')
+    let msec=0;
+    let sec=0;
+    let min=0;
+    let timerid;
+    startstop.addEventListener('click',()=>{  
+        if(timerid){
+            clearInterval(timerid)
+            timerid=null
+            startstop.innerText="Start";
+        }else{
+         
+            startstop.innerText="stop"
+            timerid=setInterval(starttimer,10)
+        }
+     
+    })
+    restartBtn.addEventListener('click',()=>{
+        clearInterval(timerid)
+     mi.innerText=""
+     sc.innerText="00"
+     ms.innerText="00"
+     min=sec=msec=0
+     if(timerid){
+            clearInterval(timerid)
+            timerid=null
+            startstop.innerText="Start";
+        }else{
+         
+            startstop.innerText="stop"
+            timerid=setInterval(starttimer,10)
+        }
+     
+    
+
+    })
+
+    function starttimer(){
+       ms.innerText=msec < 9?`0${++msec}`:++msec;
+        if(msec==100){
+            msec=0
+           sc.innerText=sec<9?`0${++sec}s:`: `${++sec}s:`;
+            if(sec==60){
+                sec=0
+                mi.innerText=min<9?`0${++min}m:`:`${++min}m:`;
+            }
+        }
+    }
+</script>
+</html>
