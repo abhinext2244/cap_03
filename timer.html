@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        .box-container {
+            width: 800px;
+            height: 500px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .timer-container {
+            display: flex;
+            justify-content: space-around;
+         
+        }
+        input[type=text]{
+            width:40px;
+            height:30px;
+            border:none;
+            border-bottom: 1px solid blue;
+           outline:none;
+           margin-right:5px;
+        }
+        input::placeholder
+        {
+            text-align:center;
+        }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.start{
+    width:100px;
+    height:30px;
+    margin:10px;
+}
+.Restart{
+    width:100px;
+    height:30px;
+    margin:10px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box-container">
+            <div class="timer-container">
+                <div ><input type="text" placeholder="Hour" value=""class="hour" maxlength="2" pattern="[0-9]"></div>
+                <div ><input type="text" placeholder="Min" class="min" maxlength="2"></div>
+                <div ><input type="text" placeholder="sec"class="sec" maxlength="2" pattern="[0-9]"></div>
+            </div>
+            <div><button class="start">Start</button>
+                <button class="Restart">Restart</button>
+            </div>
+        </div>
+       
+    </div>
+</body>
+<script>
+    let hour=document.querySelector('.hour');
+    let min=document.querySelector('.min');
+    let sec=document.querySelector('.sec');
+    let start=document.querySelector('.start')
+    let Restart=document.querySelector('.Restart')
+    let timerid;
+    start.addEventListener('click',()=>{
+      if(sec.value>60){
+        sec.value="60"
+      }
+      if(min.value>60){
+        min.value="60"
+      }
+        if(timerid){
+            clearInterval(timerid)
+            timerid=null
+            start.innerText="Start"
+        }else{
+            timerid=setInterval(startTimer,1000)
+            start.innerText="Stop"
+        }
+
+    })
+    Restart.addEventListener('click',()=>{
+        clearInterval(timerid)
+        timerid=null
+        sec.value=""
+        min.value=''
+        hour.value=''
+    })
+    function startTimer() {
+      
+            sec.value--;
+            if (sec.value == 0) {
+                sec.value = 60
+                min.value--;
+                if (min.value == 0) {
+                    min.value = 60
+                    hour.value--
+                }
+            }
+        }
+</script>
+</html>
